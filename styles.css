@@ -1,1 +1,166 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Quicksand:wght@600&family=Roboto&family=Spectral&display=swap');
 
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    height: auto;
+}
+
+.content-container {
+    max-height: 150vh;
+    margin-top: 10px;
+    display: flex;
+}
+
+.Genre-container {
+    height: 90vh;
+    width: 15%;
+}
+
+.Genre-List {
+    display: flex;
+    flex-direction: column;
+}
+
+.Genre-List a {
+    color: rgba(29, 29, 29, 0.995);
+    margin-top: 9px;
+    margin-right: 20px;
+    margin-left: 6px;
+    padding: 2px 6px;
+    border-bottom: 2px solid rgba(95, 93, 93, 0.342);
+    font-weight: 600;
+}
+
+.Genre-List a:hover {
+    text-decoration: none;
+}
+
+.Genre-Heading {
+    margin: 0px 6px;
+}
+
+#main-content-heading {
+    height: 50px;
+    width: auto;
+    font-size: 30px;
+    font-weight: 500;
+    padding: 8px 0px 0px 25px;
+}
+
+.movie-card {
+    border: 2px solid rgba(95, 93, 93, 0.342);
+    min-height: auto;
+    width: 250px;
+    margin: 8px;
+    border-radius: 4px;
+}
+
+.movie-poster img {
+    height: 300px;
+    width: 240px;
+    object-fit: contain;
+    padding-top: 5px;
+}
+
+.movie-title {
+    font-size: 22px;
+    font-weight: 500;
+    padding: 0px 7px;
+    padding-top: 5px;
+    line-height: 1.3;
+}
+
+.movie-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+    padding: 5px;
+    padding-top: 15px;
+}
+
+.display-content {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 40px;
+}
+
+/* movie-description-container................................... */
+.movie-description {
+    border: 2px solid rgba(46, 45, 45, 0.307);
+    background: rgb(185, 168, 139);
+    display: flex;
+    min-height: 55%;
+    width: 48%;
+    position: fixed;
+    margin: auto;
+    top: 20%;
+    left: 30%;
+    z-index: 1;
+}
+
+.movie-image img {
+    height: 300px;
+    width: 240px;
+    padding-top: 5px;
+    object-fit: cover;
+    margin: 35px 10px;
+}
+
+.movie-details {
+    padding: 15px;
+}
+
+.movie-name {
+    font-size: 32px;
+}
+
+.mr-top {
+    margin-top: 8px;
+}
+
+.duration-genre {
+    display: flex;
+    padding-top: 10px;
+    height: 40px;
+}
+
+.duration-genre ul li {
+    margin-left: 25px;
+}
+
+.overview {
+    font-size: 18px;
+}
+
+.ticket-booking {
+    margin-top: 15px;
+    padding: 5px;
+}
+
+.ticket-booking:active {
+    background-color: rgba(75, 73, 73, 0.603);
+    color: antiquewhite;
+}
+
+.close-button {
+    position: absolute;
+    right: 0;
+    border: none;
+    background: none;
+    margin: -3px 12px 0px 0px;
+    height: 40px;
+    width: 40px;
+}
+
+.close-button:active {
+   font-weight: 600;
+}
+.close-button:focus {
+    outline: none !important;
+}
