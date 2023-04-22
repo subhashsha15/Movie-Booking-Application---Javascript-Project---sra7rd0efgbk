@@ -4,32 +4,72 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script src="./checkoutpage.js" defer></script>
     <title>CheckoutPage</title>
 </head>
 <body>
+    <a href="./index.html"><button class="backButton">Back</button></a>
     <div class="payment-details">
         <div class="summary">
             <div class="summary-heading">Summary</div>
-            <div class="movieTitle">Black Adam</div>
+            <div class="movieTitle commonCss"></div>
             <div class="ticketPrice">
-                <span class="ticketName">Classic Ticket</span>
-                <span class="price">250</span>
+                <span class="ticketName commonCss">Classic Ticket</span>
+                <span class="price"></span>
             </div>
             <div class="NumberofTicket">
-                <label for="number">Number of Tickets</label>
-                <input type="number" id="number" />
+                <label for="number commonCss">Number of Tickets</label>
+                <input type="number" value="0" min="1" max="10" id="number" onchange="getnumberofTickets()">
             </div>
             <div class="fee">
-                <span class="convenience-fee">Convenience Fee(1.75%)</span>
-                <span class="convenience-price">8.75</span>
+                <span class="convenience-fee commonCss">Convenience Fee(1.75%)</span>
+                <span class="convenience-price"></span>
             </div>
             <div class="totalPrice">
-                <span>Sub Total</span>
-                <span id="total-price">250</span>
+                <span class="commonCss">Sub Total</span>
+                <span id="total-price"></span>
             </div>
         </div>
-        <div class="personal-information">
-           
+        <div class="personal-information displayFlex">
+                 <div class="payment">Payment</div>
+
+                <div class="name-info displayFlex ">
+                    <label for="firstname">First Name</label>
+                    <input type="text" id="firstname" placeholder="Jhon">
+                    
+                    <label for="lastname">Last Name</label>
+                    <input type="text" id="lastname" placeholder="Kumar">
+   
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="jhonkumar123@gmail.com">
+                </div>
+                 
+                <div class="card-type-info">
+                    <input type="radio" id="credit" name="cardType" checked>
+                    <label for="credit">Credit Card</label>
+
+                    <input type="radio" id="debit" name="cardType">
+                    <label for="debit">Debit Card</label>
+
+                    <input type="radio" id="upi" name="cardType">
+                    <label for="upi">UPI</label>
+                </div>
+
+                <div class="card-info displayFlex">
+                    <label for="nameOnCard">Name on Card</label>
+                    <input type="text" id="nameOnCard" placeholder="Jhon Kumar">
+
+                    <label for="cardNumber">Credit Card Number</label>
+                    <input type="text" id="cardNumber" placeholder="XXXX-XXXX-XXXX">
+
+                    <label for="expirationDate">Expiration</label>
+                    <input type="text" id="expirationDate" placeholder="mm/yy">
+
+                    <label for="cvv">CVV</label>
+                    <input type="number" id="cvv" placeholder="0000">
+                </div>
+                <button class="paymentBtn">Proceed to pay</button>
         </div>
     </div>
 </body>

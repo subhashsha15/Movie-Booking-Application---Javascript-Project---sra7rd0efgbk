@@ -11,6 +11,36 @@ body {
     height: auto;
 }
 
+.form-inline{
+    margin-left: 75%;
+}
+.form-control {
+    background-color: #ffffff4d !important;
+}
+.navbar-brand {
+    font-size: 2.5rem;
+    text-shadow: 4px 2px 5px black;
+}
+.btn{
+    padding: 0.16rem 0.75rem !important;
+    border-color: #ced4da !important;
+}
+.btn:hover{
+ background-color: #cccccc !important;
+}
+.btn-outline-success:focus {
+ background-color: grey !important;
+ box-shadow: none !important;
+}
+nav{
+    background-image: url("./Images/navbarImage.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.btn-outline-success {
+    color: #3b3c3b !important;
+}
 .content-container {
     max-height: 150vh;
     margin-top: 10px;
@@ -50,7 +80,7 @@ body {
     width: auto;
     font-size: 30px;
     font-weight: 500;
-    padding: 8px 0px 0px 25px;
+    padding: 8px 0px 0px 50px;
 }
 
 .movie-card {
@@ -93,7 +123,7 @@ body {
 /* movie-description-container................................... */
 .movie-description {
     border: 2px solid rgba(46, 45, 45, 0.307);
-    background: rgb(185, 168, 139);
+    background: #9e9e9e;
     display: flex;
     min-height: 55%;
     width: 48%;
@@ -159,8 +189,105 @@ body {
 }
 
 .close-button:active {
-   font-weight: 600;
+    font-weight: 600;
 }
+
 .close-button:focus {
     outline: none !important;
+}
+
+/*.............................Checkout page Css...................................  */
+
+.payment-details {
+    /* border: 2px solid red; */
+    background-image: url("./Images/navbarImage.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 80%;
+    margin: 10px auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.summary {
+    /* border: 2px solid green; */
+    padding: 20px;
+    width: 40%;
+    min-height: 250px;
+}
+
+.summary-heading,
+.payment {
+    text-align: center;
+    font-size: 32px;
+    font-weight: 600;
+}
+
+input {
+    margin: 6px 10px 6px 0px;
+    height: 32px;
+    font-size: 16px;
+    padding: 10px;
+    outline: none;
+    background: transparent;
+}
+
+label {
+    margin-top: 12px;
+    margin-right: 50px;
+    font-size: 18px;
+}
+
+.card-type-info {
+    display: flex;
+    text-align: center;
+}
+
+.personal-information {
+    padding: 10px;
+    padding-top: 0px;
+    border-left: 2px solid grey;
+    border-width: 5px;
+    /* border-radius: 15%; */
+    padding-left: 110px;
+}
+
+.displayFlex {
+    display: flex;
+    flex-direction: column;
+}
+
+.commonCss{
+    font-size: 18px;
+}
+.paymentBtn{
+    background-color: #cccccc;
+    margin-top: 10px;
+    margin-right: 10px;
+    font-size: 18px;
+    padding: 5px;
+}
+.paymentBtn:hover{
+    background-color: #9e9e9e;
+}
+.NumberofTicket input{
+    margin: 6px 0px 6px 0px;
+}
+.ticketPrice,.NumberofTicket,.fee,.totalPrice{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+.movieTitle{
+    margin-top: 10px;
+    font-size: 25px;
+    font-weight: 500;
+}
+.backButton{
+    background-color: #cccccc;
+    font-size: 18px;
+    padding: 4px 20px;
+    margin: 5px 10px 0px 15px;
 }

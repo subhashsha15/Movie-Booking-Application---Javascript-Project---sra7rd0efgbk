@@ -28,9 +28,7 @@ const movieDescription = document.querySelector('.movie-description');
 
 const API_KEY = "05baa17ae09fa9e246aabe02ef40245b";
 const NOW_PLAYING = "https://api.themoviedb.org/3/movie/now_playing?api_key=";
-// https://api.themoviedb.org/3/movie/now_playing?api_key=05baa17ae09fa9e246aabe02ef40245b&page=2
 const GENRE_LIST = "https://api.themoviedb.org/3/genre/movie/list?api_key=";
-const SEARCH = "https://api.themoviedb.org/3/search/movie?api_key=";
 
 var MovieDetails = [];
 var genreListData = [];
@@ -56,12 +54,11 @@ const NowPlayingMovieCardsApiCall = async () => {
     DisplayMovieCards();
 }
 
-function DisplayMovieCards() {
+function DisplayMovieCards(object = MovieDetails) {
     display_content.innerHTML = "";
-    MovieDetails.forEach(Element => {
-        // console.log(Element);
+    object.forEach(Element => {
         let MovieCards = `
-                <div onClick="displayMovieDescription('${Element.original_title}')"  class="movie-card">
+                <div onClick="displayMovieDescription(${Element.id})"  class="movie-card">
                  <div class="movie-poster">
                  <img src="https://www.themoviedb.org/t/p/w220_and_h330_face//${Element.poster_path}" alt="Image is not available">
                  </div>
@@ -72,59 +69,81 @@ function DisplayMovieCards() {
                     </div>
                  </div>`
             ;
-            display_content.innerHTML += MovieCards;
-        });
-        
-    }
-    
-    // Generating Genre-list using API and MARKUP Codes................................
-    const genreListApiCall = async () => {
+        display_content.innerHTML += MovieCards;
+    });
+
+}
+
+// Generating Genre-list using API and MARKUP Codes................................
+const genreListApiCall = async () => {
     const response = await fetch(GENRE_LIST + API_KEY);
     const myJson = await response.json();
     genreListData = myJson.genres;
-    
+
     generateGenreList();
 }
 
 function generateGenreList() {
     GenreList.innerHTML = "";
     genreListData.forEach(element => {
-        let Genreelement = `<a href="#" id="${element.name}">${element.name}</a>`;
+        let moviename = `${element.name}`;
+        let Genreelement = `<a href="#" id="${element.id}" onclick="OnClickGenreList(id)">${element.name}</a>`;
         GenreList.innerHTML += Genreelement;
     });
 }
 
-// Movies Search codes..............................................
-searchBtn.addEventListener('click', searchMovies);
-// searchInput.addEventListener('keyup', searchMovies);
 
+// Displaying movie List Using genre List........................................
+function OnClickGenreList(movieId) {
+    var GenreMovieDisplay = [];
+    MovieDetails.map((item) => {
+        item.genre_ids.forEach((id) => {
+            if (id == movieId) {
+                GenreMovieDisplay.push(item);
+            }
+        })
+    })
+    DisplayMovieCards(GenreMovieDisplay);
+
+    genreListData.forEach(element => {
+        if (element.id == movieId) {
+            nowPlayingBtn.innerHTML = element.name + " " + "Movies";
+        }
+    });
+}
+
+// Movies Search codes..............................................
+
+searchBtn.addEventListener('click', searchMovies);
 function searchMovies() {
-    console.log("clickfunction")
     let filterValue = searchInput.value.toUpperCase();
     let items = document.querySelectorAll('.movie-card');
-    
+
     for (let i = 0; i < items.length; i++) {
         let movieName = items[i].querySelector('.movie-title');
         //mango
         //m       index of "m"=0,which is > -1.
         if ((movieName.innerHTML.toUpperCase().indexOf(filterValue) > -1)) {
             items[i].style.display = "";
-            
+
         }
         else {
             items[i].style.display = "none";
         }
     }
 }
+// function for generating random movie duration.........................
+function getRandomArbitrary(min, max) {
+    return Math.random() * (max - min) + min;
+}
 
 // Displaying Movie Description
-
 function displayMovieDescription(ids) {
     movieDescription.innerHTML = "";
     MovieDetails.forEach(objectlist => {
-        if (ids === objectlist.original_title) {
+        if (ids === objectlist.id) {
             let moviedescr =
-            `<button onClick="hideMovieDescription()" class="close-button">Close</button>
+                `<button onClick="hideMovieDescription()" class="close-button">Close</button>
                 <div class="movie-image">
                 <img src="https://image.tmdb.org/t/p/w500/${objectlist.backdrop_path}" alt="Image is not available">
                 </div>
@@ -133,24 +152,35 @@ function displayMovieDescription(ids) {
                     <div class="rating mr-top">⭐ ${objectlist.vote_average}/10</div>
                     <div class="language mr-top">${objectlist.original_language.toUpperCase()}</div>
                     <div class="duration-genre mr-top">
-                        <span class="duration">135 minutes</span>
+                        <span class="duration">${Math.floor(getRandomArbitrary(90, 120))} minutes</span>
                         <ul>
-                        <li>
+                            <li>
                                 <span class="genre">Action</span>
-                                </li>
+                            </li>
                         </ul>
                         </div>
                         <div class="overview mr-top">${objectlist.overview}</div>
-                        <div class="movie-price mr-top">&#8377; 250</div>
-                        <button class="ticket-booking mr-top">Book Tickets</button>
+                        <div class="movie-price mr-top"><span>&#8377;</span> ${Math.floor(getRandomArbitrary(250, 400))}</div>
+                        <form  action="./checkoutpage.html">
+                           <button type="submit" onclick="dataToCheckoutPage()" class="ticket-booking mr-top">Book Tickets</button>
+                        </form>
                 </div>`
             movieDescription.innerHTML += moviedescr;
         }
     })
     movieDescription.style.display = "";
+
 }
 // displayMovieDescription();
 
 function hideMovieDescription() {
-    movieDescription.style.display ="none";
+    movieDescription.style.display = "none";
+}
+
+// code for checkout page
+function dataToCheckoutPage(movtitle) {
+    var movieprice = document.querySelector(".movie-price").innerText;
+    var moviename = document.querySelector(".movie-name").innerText;
+    localStorage.setItem("price", movieprice);
+    localStorage.setItem("movietitle", moviename);
 }
